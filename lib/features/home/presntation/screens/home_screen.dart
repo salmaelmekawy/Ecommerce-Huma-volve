@@ -1,5 +1,5 @@
 import 'package:ecommerce_app_huma_volve/features/home/cubit/home_cubit.dart';
-import 'package:ecommerce_app_huma_volve/features/home/cubit/home_states.dart';
+import 'package:ecommerce_app_huma_volve/features/home/presntation/view_model/home_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       buildWhen: (previous, current) =>
                           current is CategoriesLoading ||
                           current is CategoriesSuccess ||
-                          current is categoriesError,
+                          current is CategoriesError,
                       builder: (context, state) {
                         if (state is CategoriesLoading) {
                           return const Center(
@@ -115,14 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         }
 
-                        if (state is categoriesError) {
+                        if (state is CategoriesError) {
                           return Text(
-                            'Failed to load categories: ${state.errorMasage}',
+                            'Failed to load categories: ${state.message}',
                           );
                         }
 
                         if (state is CategoriesSuccess) {
-                          final categories = state.Categories;
+                          final categories = state.categories;
 
                           if (categories.isEmpty) {
                             return const Text('No categories found.');
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                     context
                                         .read<HomeCubit>()
-                                        .loadProducts(
+                                        .getProductsByCategoryId(
                                           categories[index].id,
                                         );
                                   },
@@ -170,13 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
             BlocBuilder<HomeCubit, HomeStates>(
               buildWhen: (previous, current) =>
                   current is CategoriesSuccess ||
-                  current is productLoading ||
-                  current is productsuccess ||
-                  current is productError ||
-                  current is categoriesError,
+                  current is ProductLoading ||
+                  current is ProductSuccess ||
+                  current is ProductError ||
+                  current is CategoriesError,
               builder: (context, state) {
                 if (state is CategoriesLoading ||
-                    state is productLoading) {
+                    state is ProductLoading) {
                   return const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.all(32),
@@ -187,29 +187,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }
 
-                if (state is productError) {
+                if (state is ProductError) {
                   return SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.all(24),
                       child: Text(
-                        'Failed to load products: ${state.errorMasage}',
+                        'Failed to load products: ${state.message}',
                       ),
                     ),
                   );
                 }
 
-                if (state is categoriesError) {
+                if (state is CategoriesError) {
                   return SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.all(24),
                       child: Text(
-                        'Failed to load categories: ${state.errorMasage}',
+                        'Failed to load categories: ${state.message}',
                       ),
                     ),
                   );
                 }
 
-                if (state is productsuccess) {
+                if (state is ProductSuccess) {
                   final products = state.products;
 
                   if (products.isEmpty) {

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app_huma_volve/core/network/api_clint.dart';
 import 'package:ecommerce_app_huma_volve/core/constants/api_endpoints.dart';
+import 'package:ecommerce_app_huma_volve/core/storage/secure_storage.dart';
 import 'package:ecommerce_app_huma_volve/features/auth/login/screens/models/login_model.dart';
 
 class LoginServices {
@@ -21,7 +22,12 @@ class LoginServices {
 
     final Map<String, dynamic> jsonData =
         Map<String, dynamic>.from(response.data);
+        final modelData = LoginModel.fromJson(jsonData);
+        await SecureStorage.saveAccesstoken(modelData.accessToken);
+        await SecureStorage.Saverefreshtoken(modelData.refreshToken);
+        return modelData;
 
-    return LoginModel.fromJson(jsonData);
+
+
   }
 }

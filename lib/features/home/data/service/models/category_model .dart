@@ -1,10 +1,7 @@
 class CategoryModel {
   int? id;
   String? name;
-  String? slug;
-  String? image;
-  String? creationAt;
-  String? updatedAt;
+  
 
   CategoryModel({
     this.id,

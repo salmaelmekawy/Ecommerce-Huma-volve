@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme.dart';
 import '../../../details/screens/product_details_screen.dart';
-import '../../service/models/prodduct_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductModel product;
+  final product;
 
   const ProductCard({super.key, required this.product});
 
