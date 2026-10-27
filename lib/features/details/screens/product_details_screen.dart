@@ -1,17 +1,18 @@
 import 'package:ecommerce_app_huma_volve/features/home/data/service/models/prodduct_model.dart';
+import 'package:ecommerce_app_huma_volve/features/home/presntation/screens/widgets/share_product_bottom.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  final ProductModel product;
+final int productId;
 
-  const ProductDetailsScreen({super.key, required this.product});
+  const ProductDetailsScreen({super.key, required this.productId});
 
   @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+  State<ProductDetailsScreen> createState() => ProductDetailsScreenState();
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+class ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
@@ -24,9 +25,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            
             expandedHeight: 400,
             pinned: true,
             backgroundColor: AppTheme.background,
+            
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
                 (widget.product.images != null && widget.product.images!.isNotEmpty)
