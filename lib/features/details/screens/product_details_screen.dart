@@ -1,4 +1,4 @@
-import 'package:ecommerce_app_huma_volve/features/home/service/models/prodduct_model.dart';
+import 'package:ecommerce_app_huma_volve/features/home/data/service/models/prodduct_model.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme.dart';
 

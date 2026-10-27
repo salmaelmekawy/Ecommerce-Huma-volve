@@ -1,4 +1,5 @@
-import 'package:ecommerce_app_huma_volve/features/home/service/models/category_model%20.dart';
+
+import 'package:ecommerce_app_huma_volve/features/home/data/service/models/category_model%20.dart';
 
 class ProductModel {
   int? id;

@@ -1,10 +1,10 @@
-import 'package:ecommerce_app_huma_volve/features/home/cubit/home_cubit.dart';
+import 'package:ecommerce_app_huma_volve/core/dummy_data.dart';
+import 'package:ecommerce_app_huma_volve/core/theme.dart';
+import 'package:ecommerce_app_huma_volve/features/home/presntation/cubit/home_cubit.dart';
 import 'package:ecommerce_app_huma_volve/features/home/presntation/view_model/home_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/dummy_data.dart';
-import '../../../core/theme.dart';
 import 'widgets/product_card.dart';
 import 'widgets/category_chip.dart';
 
@@ -77,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 8),
                     Text(
                       'Best trendy collection!',
-                      style: Theme.of(context).textTheme.bodyMedium
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
                           ?.copyWith(fontSize: 18),
                     ),
                     const SizedBox(height: 32),
@@ -169,30 +171,20 @@ class _HomeScreenState extends State<HomeScreen> {
             // Products
             BlocBuilder<HomeCubit, HomeStates>(
               buildWhen: (previous, current) =>
-                  current is CategoriesSuccess ||
                   current is ProductLoading ||
                   current is ProductSuccess ||
                   current is ProductError ||
+                  current is CategoriesLoading ||
                   current is CategoriesError,
               builder: (context, state) {
                 if (state is CategoriesLoading ||
-                    state is ProductLoading) {
+                    state is ProductLoading ||
+                    state is HomeInitial) {
                   return const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.all(32),
                       child: Center(
                         child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  );
-                }
-
-                if (state is ProductError) {
-                  return SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(
-                        'Failed to load products: ${state.message}',
                       ),
                     ),
                   );
@@ -204,6 +196,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(24),
                       child: Text(
                         'Failed to load categories: ${state.message}',
+                      ),
+                    ),
+                  );
+                }
+
+                if (state is ProductError) {
+                  return SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Text(
+                        'Failed to load products: ${state.message}',
                       ),
                     ),
                   );
@@ -250,6 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
+
             const SliverToBoxAdapter(
               child: SizedBox(height: 24),
             ),

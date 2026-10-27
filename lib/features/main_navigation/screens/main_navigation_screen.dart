@@ -1,15 +1,15 @@
 import 'package:ecommerce_app_huma_volve/core/Network/api_clint.dart';
-import 'package:ecommerce_app_huma_volve/features/home/cubit/home_cubit.dart';
 import 'package:ecommerce_app_huma_volve/features/home/data/data_source/home_remote_data_imp.dart';
 import 'package:ecommerce_app_huma_volve/features/home/data/data_source/home_remote_data_source.dart';
-import 'package:ecommerce_app_huma_volve/features/home/data/repositly/home_repositly_imp.dart';
+import 'package:ecommerce_app_huma_volve/features/home/data/repository/home_repositly_imp.dart';
 import 'package:ecommerce_app_huma_volve/features/home/domain/repositry/home_repositry.dart';
 import 'package:ecommerce_app_huma_volve/features/home/domain/use_case/get_categories_use_case.dart';
 import 'package:ecommerce_app_huma_volve/features/home/domain/use_case/get_product_use_case.dart';
+import 'package:ecommerce_app_huma_volve/features/home/presntation/cubit/home_cubit.dart';
+import 'package:ecommerce_app_huma_volve/features/home/presntation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/theme.dart';
-import '../../home/screens/home_screen.dart';
 import '../../cart/screens/cart_screen.dart';
 import '../../profile/screens/profile_screen.dart';
 

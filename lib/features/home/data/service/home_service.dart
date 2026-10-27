@@ -1,8 +1,8 @@
 
 import 'package:ecommerce_app_huma_volve/core/Network/api_clint.dart';
 import 'package:ecommerce_app_huma_volve/core/constants/api_endpoints.dart';
-import 'package:ecommerce_app_huma_volve/features/home/service/models/category_model%20.dart';
-import 'package:ecommerce_app_huma_volve/features/home/service/models/prodduct_model.dart';
+import 'package:ecommerce_app_huma_volve/features/home/data/service/models/category_model%20.dart';
+import 'package:ecommerce_app_huma_volve/features/home/data/service/models/prodduct_model.dart';
 
 class HomeService {
   final Apiclient apiclient;
